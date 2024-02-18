@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Tarefa } from '../../store/tarefa';
-import { addTarefa } from '../../store/actions';
+import { addTarefa } from '../../slices/tarefa.slice';
 
 const Formulario: React.FC = () => {
     const [titulo, setTitulo] = useState('');

@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux";
-import { State, Tarefa } from "../../store/tarefa";
+import { Tarefa } from "../../store/tarefa";
 import { useDispatch } from "react-redux";
-import { removeTarefa } from "../../store/actions";
+import { removeTarefa, selectTarefas } from "../../slices/tarefa.slice";
 
 const Listagem: React.FC = () => {
-    const tarefas = useSelector((state: State) => state.tarefas)
+    const tarefas = useSelector(selectTarefas)
+    //const tarefas = useSelector(selectTarefas)
     const dispatch = useDispatch()
 
     const handleRemoverTarefa = (id: number) => {
-        dispatch(removeTarefa(id))
+        const tarefa: Tarefa = {id: id} as Tarefa
+        dispatch(removeTarefa(tarefa))
     }
 
     return ( 
