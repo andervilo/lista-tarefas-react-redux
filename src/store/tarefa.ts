@@ -1,12 +1,5 @@
 import {configureStore } from '@reduxjs/toolkit';
-import tarefaSlice from '../slices/tarefa.slice';
-
-export interface Tarefa {
-    id: number;
-    titulo?: string;
-    descricao?: string;
-    concluida?: boolean;
-}
+import tarefaSlice, { Tarefa } from '../slices/tarefa.slice';
 
 export interface Action {
     type: string;
@@ -18,3 +11,5 @@ export const tarefaStore = configureStore({
         tarefas: tarefaSlice
     }
 });
+
+export type RootState = ReturnType<typeof tarefaStore.getState>

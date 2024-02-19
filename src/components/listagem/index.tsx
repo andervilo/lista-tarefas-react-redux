@@ -1,7 +1,12 @@
 import { useSelector } from "react-redux";
-import { Tarefa } from "../../store/tarefa";
 import { useDispatch } from "react-redux";
-import { removeTarefa, selectTarefas } from "../../slices/tarefa.slice";
+import { 
+    Tarefa, 
+    removeTarefa, 
+    selectTarefas,
+    setIdToEdit
+ } from "../../slices/tarefa.slice";
+import Formulario from "../formulario";
 
 const Listagem: React.FC = () => {
     const tarefas = useSelector(selectTarefas)
@@ -15,12 +20,14 @@ const Listagem: React.FC = () => {
 
     return ( 
         <>
+            <Formulario  />
             <h3>Lista de Tarefas</h3>
             <div>
                 <ul>
                     {tarefas.map((tarefa: Tarefa) =>(
                         <li key={tarefa.id}>
                             {tarefa.titulo} - {tarefa.descricao}
+                            <button onClick={() => dispatch(setIdToEdit(tarefa))}>Editar</button>
                             <button onClick={() => handleRemoverTarefa(tarefa.id)}>Remover</button>
                         </li>
                     ))}
